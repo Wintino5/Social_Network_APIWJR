@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { User } = require('../../models');
+const { User } = require('../../models/User');
 
 // The `/api/users` endpoint
 
@@ -40,9 +40,21 @@ router.post('/users', async (req, res) => {
 
 router.put('/users/:user_id', async (req, res) => {
     try {
-        const user = await User.update(req.params.id);
+        const user = await User.update(req.params.user_id);
 
         res.json(user)
+    } catch (err) {
+        console.log(err)
+    }
+})
+
+router.delete('/users/:user_id', async (req, res) => {
+    try {
+        const user = User.deleteOne({ _id: req.params.user_id });
+
+        res.json({
+            message: 'User deleted successfully'
+        })
     } catch (err) {
         console.log(err)
     }

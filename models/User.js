@@ -18,6 +18,11 @@ const userSchema = new Schema(
             },
             message: 'Invalid email address'
         }
-       } 
+       },
+       
+       thoughts: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Thought'
+       }]
     }
 )
