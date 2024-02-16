@@ -1,5 +1,5 @@
 const express = require('express');
-require('dotenv').config();
+// require('dotenv').config();
 
 const app = express();
 
@@ -7,7 +7,7 @@ const PORT = process.env.PORT || 3001;
 
 const connection = require('./config/connection');
 
-const { user_routes } = require('./routes/api/user-routes')
+const { user_routes, thought_routes } = require('./routes/api')
 
 
 // Middleware
@@ -15,7 +15,8 @@ app.use(express.json())
 
 // Load Routes
 app.use('/api', [
-    user_routes
+    user_routes,
+    thought_routes
 ])
 
 
