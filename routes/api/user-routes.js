@@ -5,9 +5,7 @@ const { User, Thought } = require('../../models');
 
 router.get('/users', async (req, res) => {
     try {
-        const user = await User.find({
-            include: Thought
-        });
+        const user = await User.find();
 
         res.json(user)
     } catch (err) {

@@ -29,8 +29,14 @@ const userSchema = new Schema(
         type: Schema.Types.ObjectId,
         ref: 'User'
        }]
+    }, {
+        toJSON:{
+            virtuals: true
+        },
+        id: false
     }
 )
 
+const User = model('User', userSchema)
 
-module.exports = userSchema
+module.exports = User

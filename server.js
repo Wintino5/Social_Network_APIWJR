@@ -7,7 +7,7 @@ const PORT = process.env.PORT || 3001;
 
 const connection = require('./config/connection');
 
-const { user_routes, thought_routes } = require('./routes/api')
+const { user_routes, thought_routes, reaction_routes } = require('./routes/api')
 
 
 // Middleware
@@ -16,7 +16,8 @@ app.use(express.json())
 // Load Routes
 app.use('/api', [
     user_routes,
-    thought_routes
+    thought_routes,
+    reaction_routes
 ])
 
 

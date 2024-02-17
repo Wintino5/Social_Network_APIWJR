@@ -5,9 +5,7 @@ const {Thought, Reaction} = require('../../models');
 
 router.get('/thoughts', async (req, res) => {
     try {
-        const thought = await Thought.find({
-            include: Reaction
-        });
+        const thought = await Thought.find();
 
         res.json(thought)
     } catch (err) {
@@ -51,7 +49,7 @@ router.delete('/thoughts/:thoughts_id', async (req, res) => {
         const thought = await Thought.deleteOne({_id: req.params.thought_id});
 
         res.json({
-            message: 'User deleted successfully'
+            message: 'Thought deleted successfully'
         })
     } catch (err) {
         console.log(err)
