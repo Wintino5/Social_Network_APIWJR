@@ -40,7 +40,7 @@ router.post('/users', async (req, res) => {
 
 router.put('/users/:user_id', async (req, res) => {
     try {
-        const user = await User.update(req.params.user_id);
+        const user = await User.updateOne({_id: req.params.user_id}, {$set: req.body});
 
         res.json(user)
     } catch (err) {
@@ -56,6 +56,30 @@ router.delete('/users/:user_id', async (req, res) => {
             message: 'User deleted successfully'
         })
 
+    } catch (err) {
+        console.log(err)
+    }
+})
+
+router.post('/users/:user_id/friends/:friend_id', async (req, res) => {
+    try {
+        const friend = await User.findOneAndUpdate({_id: req.params.user_id}, {$push: {friends:{_id: req.params.friend_id}}}, {new:true});
+
+        res.json({
+            message: 'Friend added successfully'
+        })
+    } catch (err) {
+        console.log(err)
+    }
+})
+
+router.delete('/users/:user_id/friends/:friend_id', async (req, res) => {
+    try {
+        const friend = await User.findOneAndUpdate({_id: req.params.user_id}, {$pull: {friends: req.params.friend_id}}, {new:true});
+
+        res.json({
+            message: 'Friend removed successfully'
+        })
     } catch (err) {
         console.log(err)
     }

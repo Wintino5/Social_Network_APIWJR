@@ -6,7 +6,7 @@ In this challenge we completed code to create a Social Network Database. We give
 
 ## Repository
 
-Link to walkthrough: https://drive.google.com/file/d/1gKN8J0GzFr4dKINymeWQOAZNvy6rfLJR/view
+Link to walkthrough: https://drive.google.com/file/d/1A_Kn12MEPtVD8C2Oj5sh0haFH9v4t4G3/view
 
 ## Technologies
 

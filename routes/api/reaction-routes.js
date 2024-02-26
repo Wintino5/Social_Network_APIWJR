@@ -1,9 +1,9 @@
-const { Reaction } = require('../../models');
+const { Thought } = require('../../models');
 const router = require('express').Router();
 
-router.post('/reactions', async (req, res) => {
+router.post('/thoughts/:thought_id/reactions', async (req, res) => {
     try {
-        const reaction = await Reaction.create(req.body);
+        const reaction = await Thought.findOneAndUpdate({_id: req.params.thought_id}, {reaction: req.body}, {new: true});
 
         res.json(reaction)
     } catch (err) {
@@ -11,9 +11,9 @@ router.post('/reactions', async (req, res) => {
     }
 })
 
-router.delete('/reactions/:reactions_id', async (req, res) => {
+router.delete('/thoughts/:thought_id/reactions/:reaction_id', async (req, res) => {
     try {
-        const reaction = await Reaction.deleteOne({_id: req.params.reactions_id});
+        const reaction = await Thought.findOneAndUpdate({_id: req.params.thought_id}, {$pull: {reaction:{_id: req.params.reaction_id}}}, {new:true});
 
         res.json({
             message: 'Reaction deleted successfully'
